@@ -28,6 +28,10 @@
   service: name=apache2 state=restarted
   when: apache2_conf.changed
 
+- name: "mkdir lsyncd conf dir"
+  sudo_user: root
+  file: dest=/etc/lsyncd state=directory mode=0755
+
 - name: "lsyncd conf"
   template: src={{ lsyncd_conf }} dest=/etc/lsyncd/lsyncd.conf.lua owner=root mode=0644
   register: lsyncd_conf

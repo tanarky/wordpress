@@ -1,8 +1,8 @@
-- hosts: dev
+- hosts: standalone
   sudo: true
   roles:
     - {role: users,    tags: ['init']}
-    - {role: apt-dev,  tags: ['apt-dev']}
     - {role: apt-db,   tags: ['apt-db']}
+    - {role: apt-dev,  tags: ['apt-dev']}
     - {role: apt-web,  tags: ['apt-web']}
     - {role: tersmitten.wordpress, tags: ['wordpress']}

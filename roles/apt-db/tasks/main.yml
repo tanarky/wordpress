@@ -10,7 +10,7 @@
 
 - name: "disable apparmor mysql"
   sudo_user: root
-  command: bash -lc "ln -sf /etc/apparmor.d/usr.sbin.mysqld /etc/apparmor.d/disable/usr.sbin.mysqld && sudo service apparmor restart"
+  command: bash -lc "ln -sf /etc/apparmor.d/usr.sbin.mysqld /etc/apparmor.d/disable/usr.sbin.mysqld && sudo service apparmor stop"
 
 - name: "mkdir mysql datadir"
   file: dest=/data/mysql state=directory mode=0755 owner=mysql

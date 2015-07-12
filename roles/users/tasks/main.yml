@@ -12,6 +12,19 @@
   sudo_user: root
   command: bash -lc "update-locale LANG=ja_JP.UTF-8"
 
+- name: Set timezone variables
+  copy: content="{{ timezone }}"
+        dest=/etc/timezone
+        owner=root
+        group=root
+        mode=0644
+        backup=yes
+  register: timezone
+
+- name: update timezone
+  command: dpkg-reconfigure --frontend noninteractive tzdata
+  when: timezone.changed
+
 - name: add users
   user: name="{{item.n}}"
         password="{{item.p}}"
@@ -32,15 +45,3 @@
 #  with_file:
 #    - tanarky.pub
 
-- name: Set timezone variables
-  copy: content="{{ timezone }}"
-        dest=/etc/timezone
-        owner=root
-        group=root
-        mode=0644
-        backup=yes
-  register: timezone
-
-- name: update timezone
-  command: dpkg-reconfigure --frontend noninteractive tzdata
-  when: timezone.changed
