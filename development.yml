@@ -1,0 +1,37 @@
+- hosts: dev
+  sudo: true
+  vars:
+    rbenv:
+      env: system
+      version: v0.4.0
+      ruby_version: 2.1.5
+    timezone: Asia/Tokyo
+    wordpress_installs:
+      - name: wordpress
+        dbname: wp_development
+        dbuser: wpuser
+        dbpass: wppass
+        dbhost: localhost
+        path: /var/www/html
+        admin_name: admin
+        admin_email: root@localhost.localdomain
+        admin_password: 'tuFr8=aPra@a'
+        title: wordpress
+        url: http://dev01.mywp.com
+        themes: []
+        plugins: []
+        users: {}
+    db_user: wpuser
+    db_password: wppass
+    db_name: wp_development
+    db_my_cnf: ../files/my.cnf
+    db_charset_cnf: ../files/charset.cnf.dev
+    apache2_conf: ../files/000-default.conf
+    lsyncd_conf: ../files/lsyncd.conf.lua
+    s3cmd_conf: ../files/s3cmd.conf
+  roles:
+    - {role: users,    tags: ['init']}
+    - {role: apt-dev,  tags: ['apt-dev']}
+    - {role: apt-db,   tags: ['apt-db']}
+    - {role: apt-web,  tags: ['apt-web']}
+    - {role: tersmitten.wordpress, tags: ['wordpress']}

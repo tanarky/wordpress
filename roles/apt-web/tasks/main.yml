@@ -1,0 +1,42 @@
+- name: 'install apt db packages'
+  apt: pkg="{{item}}" state=present
+  with_items:
+    - awscli
+    - python-magic
+    - s3cmd
+    - lsyncd
+    - zip
+    - apache2
+    - libapache2-mod-php5
+    - php5
+    - php5-cli
+    - php5-gd
+    - php5-fpm
+    - php5-mysql
+    - mysql-client-5.6
+    - libmysqld-dev
+
+- name: "a2enmod rewrite"
+  sudo_user: root
+  command: bash -lc "a2enmod rewrite"
+
+- name: "set apache2 conf"
+  template: src={{ apache2_conf }} dest=/etc/apache2/sites-enabled/000-default.conf owner=www-data mode=0644
+  register: apache2_conf
+
+- name: "restart apache2"
+  service: name=apache2 state=restarted
+  when: apache2_conf.changed
+
+- name: "lsyncd conf"
+  template: src={{ lsyncd_conf }} dest=/etc/lsyncd/lsyncd.conf.lua owner=root mode=0644
+  register: lsyncd_conf
+
+# s3cmd --configure
+- name: "s3cmd conf"
+  template: src={{ s3cmd_conf }} dest=/etc/s3cmd.conf owner=root mode=0400
+  register: s3cmd_conf
+
+- name: "restart lsyncd"
+  service: name=lsyncd state=restarted
+  when: lsyncd_conf.changed or s3cmd_conf.changed

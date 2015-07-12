@@ -1,0 +1,46 @@
+- name: apt update
+  sudo_user: root
+  command: bash -lc "apt-get update"
+
+- name: 'install apt packages'
+  apt: pkg="{{item}}" state=present
+  with_items:
+    - zsh
+    - language-pack-ja
+
+- name: locale update
+  sudo_user: root
+  command: bash -lc "update-locale LANG=ja_JP.UTF-8"
+
+- name: add users
+  user: name="{{item.n}}"
+        password="{{item.p}}"
+        shell=/usr/bin/zsh
+        state=present
+        append=yes
+        groups=sudo
+  with_items:
+    - { n: 'tanarky',  p: '$1$FG1JF3fr$Q5ZsX/fN4mHDoBRDFb/NE1' }
+
+- authorized_key: user=tanarky key="{{ lookup('file',  'tanarky.pub') }}"
+
+#- name: add app user
+#  user: name=wp shell=/bin/bash state=present append=yes
+#
+#- name: add app user
+#  authorized_key: user=wp key="{{ item }}"
+#  with_file:
+#    - tanarky.pub
+
+- name: Set timezone variables
+  copy: content="{{ timezone }}"
+        dest=/etc/timezone
+        owner=root
+        group=root
+        mode=0644
+        backup=yes
+  register: timezone
+
+- name: update timezone
+  command: dpkg-reconfigure --frontend noninteractive tzdata
+  when: timezone.changed
