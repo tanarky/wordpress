@@ -32,6 +32,14 @@
   sudo_user: root
   file: dest=/etc/lsyncd state=directory mode=0755
 
+- name: "mkdir wp-static dir"
+  sudo_user: root
+  file: dest=/var/www/wp-static state=directory mode=0755 owner=www-data group=www-data
+
+- name: "add lsyncd to default"
+  sudo_user: root
+  command: bash -lc "update-rc.d lsyncd defaults"
+
 - name: "lsyncd conf"
   template: src={{ lsyncd_conf }} dest=/etc/lsyncd/lsyncd.conf.lua owner=root mode=0644
   register: lsyncd_conf
@@ -41,6 +49,14 @@
   template: src={{ s3cmd_conf }} dest=/etc/s3cmd.conf owner=root mode=0400
   register: s3cmd_conf
 
+- name: "mkdir aws conf dir"
+  sudo_user: root
+  file: dest=/root/.aws state=directory mode=0755
+
+- name: "aws conf"
+  template: src={{ aws_conf }} dest=/root/.aws/config owner=root mode=0400
+  register: aws_conf
+
 - name: "restart lsyncd"
   service: name=lsyncd state=restarted
-  when: lsyncd_conf.changed or s3cmd_conf.changed
+  when: lsyncd_conf.changed or s3cmd_conf.changed or aws_conf.changed
