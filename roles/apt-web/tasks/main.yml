@@ -24,6 +24,9 @@
   template: src={{ apache2_conf }} dest=/etc/apache2/sites-enabled/000-default.conf owner=www-data mode=0644
   register: apache2_conf
 
+- name: "set robots.txt"
+  template: src=../files/robots.txt dest=/var/www/html/robots.txt owner=www-data mode=0644
+
 - name: "restart apache2"
   service: name=apache2 state=restarted
   when: apache2_conf.changed
