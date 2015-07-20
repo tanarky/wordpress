@@ -6,3 +6,5 @@
     - {role: apt-db,   tags: ['apt-db']}
     - {role: apt-web,  tags: ['apt-web']}
     - {role: tersmitten.wordpress, tags: ['wordpress']}
+    - {role: wp-themes,    tags: ['wp-themes']}
+    - {role: wp-my-themes, tags: ['wp-my-themes']}

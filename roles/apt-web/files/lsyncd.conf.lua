@@ -15,5 +15,5 @@ s3sync = {
 sync{
   s3sync,
   source = "/var/www/wp-static",
-  target = "s3://www.pets-video.com",
+  target = "{{ lsyncd_target }}",
 }

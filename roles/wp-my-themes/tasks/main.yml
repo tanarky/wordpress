@@ -1,0 +1,7 @@
+- name: copy habakiri_child_01 theme
+  sudo_user: www-data
+  copy: src=../files/habakiri_child_01 dest=/var/www/html/wp-content/themes/ owner=www-data
+
+- name: copy twentyfourteen_child_01 theme
+  sudo_user: www-data
+  copy: src=../files/twentyfourteen_child_01 dest=/var/www/html/wp-content/themes/ owner=www-data

@@ -1,0 +1,7 @@
+- name: copy habakiri theme
+  sudo_user: www-data
+  copy: src=../files/habakiri dest=/var/www/html/wp-content/themes/ owner=www-data
+
+- name: copy stinger5 theme
+  sudo_user: www-data
+  copy: src=../files/stinger5ver20150505b dest=/var/www/html/wp-content/themes/ owner=www-data
