@@ -5,3 +5,7 @@
 - name: copy stinger5 theme
   sudo_user: www-data
   copy: src=../files/stinger5ver20150505b dest=/var/www/html/wp-content/themes/ owner=www-data
+
+- name: copy basilico theme
+  sudo_user: www-data
+  copy: src=../files/basilico dest=/var/www/html/wp-content/themes/ owner=www-data
