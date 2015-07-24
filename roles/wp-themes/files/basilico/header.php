@@ -4,9 +4,9 @@
 <!--[if IE 8]> <html class="ie" <?php language_attributes(); ?>> <![endif]-->
 <!--[if gt IE 8]><!--> <html <?php language_attributes(); ?>> <!--<![endif]-->
 <head>
-<meta charset="<?php bloginfo('charset'); ?>" />
+<meta charset="<?php bloginfo('charset'); ?>">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
-<meta name="format-detection" content="telephone=no" />
+<meta name="format-detection" content="telephone=no">
 <?php if(is_category()): ?>
 <?php elseif(is_archive()): ?>
 <meta name="robots" content="noindex,follow">
@@ -39,17 +39,20 @@ max($paged,$page));
 endif;
 ?>
 </title>
-<link rel="stylesheet" href="<?php bloginfo('template_directory'); ?>/css/normalize.css">
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+<!--
 <link rel="stylesheet" href="<?php echo get_stylesheet_uri(); ?>" type="text/css" media="screen" />
+-->
+
 <link rel="alternate" type="application/rss+xml" title="<?php bloginfo('name'); ?> RSS Feed" href="<?php bloginfo('rss2_url'); ?>" />
-<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
 <link rel="shortcut icon" href="<?php echo get_template_directory_uri(); ?>/images/logo.ico" />
-<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
 <!--[if lt IE 9]>
 <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
 <script src="<?php bloginfo('template_directory'); ?>/js/html5shiv.js"></script>
 <![endif]-->
-<?php wp_head(); ?>
 <?php if(is_mobile()) { ?>
 <link rel="apple-touch-icon-precomposed" href="<?php echo get_template_directory_uri(); ?>/images/apple-touch-icon-precomposed.png" />
 <?php } else { ?>

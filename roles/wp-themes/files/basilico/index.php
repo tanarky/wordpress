@@ -5,6 +5,8 @@
     <main>
       <article>
         <section>
+<h1>hello</h1>
+aaa
           <?php get_template_part('itiran');?>
         </section>
         <!--/section--> 

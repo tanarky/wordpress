@@ -1,5 +1,7 @@
 <?php get_header(); ?>
 
+hello
+
 <div id="content" class="clearfix">
   <div id="contentInner">
     <main>
@@ -15,7 +17,7 @@
             <!--ループ開始 -->
             <?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
             <h1 class="entry-title">
-              <?php the_title(); //タイトル ?>
+              タイトル：<?php the_title(); //タイトル ?> 
             </h1>
             <?php the_content(); //本文 ?>
         </article>
