@@ -5,7 +5,7 @@
 <!--[if gt IE 8]><!--> <html <?php language_attributes(); ?>> <!--<![endif]-->
 <head>
 <meta charset="<?php bloginfo('charset'); ?>">
-<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=yes">
 <meta name="format-detection" content="telephone=no">
 <?php if(is_category()): ?>
 <?php elseif(is_archive()): ?>
@@ -39,80 +39,39 @@ max($paged,$page));
 endif;
 ?>
 </title>
-<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+<!-- styles -->
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="<?php echo get_stylesheet_uri(); ?>" type="text/css" media="screen">
+<!-- /styles -->
 
-<!--
-<link rel="stylesheet" href="<?php echo get_stylesheet_uri(); ?>" type="text/css" media="screen" />
--->
-
-<link rel="alternate" type="application/rss+xml" title="<?php bloginfo('name'); ?> RSS Feed" href="<?php bloginfo('rss2_url'); ?>" />
-<link rel="shortcut icon" href="<?php echo get_template_directory_uri(); ?>/images/logo.ico" />
+<!-- RSS -->
+<link rel="alternate" type="application/rss+xml" title="<?php bloginfo('name'); ?> RSS Feed" href="<?php bloginfo('rss2_url'); ?>">
+<!-- /RSS -->
+<!-- shortcut icons -->
+<link rel="shortcut icon" href="<?php echo get_template_directory_uri(); ?>/images/logo.ico">
+<link rel="apple-touch-icon-precomposed" href="<?php echo get_template_directory_uri(); ?>/images/apple-touch-icon-precomposed.png">
+<!-- /shortcut icons -->
 
 <!--[if lt IE 9]>
 <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
 <script src="<?php bloginfo('template_directory'); ?>/js/html5shiv.js"></script>
 <![endif]-->
-<?php if(is_mobile()) { ?>
-<link rel="apple-touch-icon-precomposed" href="<?php echo get_template_directory_uri(); ?>/images/apple-touch-icon-precomposed.png" />
-<?php } else { ?>
-<?php } ?>
 </head>
-<body <?php body_class(); ?>>
-<!-- アコーディオン -->
-<nav id="s-navi" class="pcnone">
-  <dl class="acordion">
-    <dt class="trigger">
-      <p><span class="op"><i class="fa fa-bars"></i>&nbsp; MENU</span></p>
-    </dt>
-    <dd class="acordion_tree">
-      <ul>
-        <?php wp_nav_menu(array('theme_location' => 'navbar'));?>
-      </ul>
-      <div class="clear"></div>
-    </dd>
-  </dl>
-</nav>
-<!-- /アコーディオン -->
-<div id="wrapper">
-<header> 
-  <!-- ロゴ又はブログ名 -->
-  <p class="sitename"><a href="<?php echo home_url(); ?>/">
-    <?php if (get_option('stinger_logo_image')): //ロゴ画像がある時 ?>
-    <img alt="<?php bloginfo( 'name' ); ?>" src="<?php echo esc_url(get_option('stinger_logo_image')); ?>" />
-    <?php else: //ロゴ画像が無い時 ?>
-    <?php bloginfo( 'name' ); ?>
-    <?php endif; ?>
-    </a></p>
-  <!-- キャプション -->
-  <?php if (is_home()) { ?>
-  <h1 class="descr">
-    <?php bloginfo('description'); ?>
-  </h1>
-  <?php } else { ?>
-  <p class="descr">
-    <?php bloginfo('description'); ?>
-  </p>
-  <?php } ?>
-  
-  <!--
-カスタムヘッダー画像
--->
-  <div id="gazou">
-    <?php if(get_header_image()): ?>
-    <p id="headimg"><img src="<?php header_image(); ?>" alt="*" width="<?php echo HEADER_IMAGE_WIDTH; ?>" height="<?php echo HEADER_IMAGE_HEIGHT; ?>" /></p>
-    <?php endif; ?>
-  </div>
-  <!-- /gazou --> 
-  <!--
-メニュー
--->
-  <nav class="smanone clearfix">
-    <?php
-$defaults = array(
-	'theme_location'  => 'navbar',
-);
-wp_nav_menu( $defaults );
-?>
+
+<body <?php body_class();?>>
+
+  <!-- side menu -->
+  <nav id="main-nav" class="navigation overflow">
+    <?php wp_nav_menu(array('theme_location' => 'navbar'));?>
   </nav>
-</header>
+  <!-- /side_menu -->
+
+  <div id="container">
+    <header class="primary">
+      <span class="open icon">&#9776;</span>
+      <hgroup><h1><?php bloginfo('title'); ?></h1></hgroup>
+    </header>
+
+    <section id="scroller" class="overflow">
