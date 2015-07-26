@@ -10,7 +10,9 @@
 <script src="http://code.jquery.com/jquery-2.0.0.min.js"></script>
 <script src="<?php echo get_template_directory_uri(); ?>/js/bamboo.js"></script>
 <script>
-var site = new Bamboo();
+var site = new Bamboo({
+    menuWidth: 300,
+});
 </script>
   </body>
 </html>

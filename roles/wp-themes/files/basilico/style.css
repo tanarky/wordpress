@@ -9,7 +9,11 @@ License: MIT
 License URI: 
 Version: 0.1
 ---------------------------------------------------------*/
-
+/** Original **/
+body {
+    font-family: inherit;
+}
+/** /Original **/
 /** Bamboo.css **/
 .overflow {
     overflow: auto; 
@@ -94,7 +98,10 @@ header.primary hgroup h1 {
     list-style: none;
     padding: 0;
     margin: 0;
+/*
     width: 265px;
+*/
+    width: 300px;
     position: relative;
 }
 .navigation li {
@@ -120,7 +127,10 @@ header.primary hgroup h1 {
 }
 @media only screen and (min-width: 768px) {
     #container {
+/*
         left: 265px;
+*/
+        left: 300px;
         width: auto;
         overflow: auto;
         -webkit-overflow-scrolling: touch;
@@ -148,7 +158,10 @@ header.primary hgroup h1 {
         line-height: 34px;
     }
     .navigation {
+/*
         max-width: 265px;
+*/
+        max-width: 300px;
     }
 }
 /** /Bamboo.css **/
