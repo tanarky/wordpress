@@ -10,38 +10,30 @@ var Bamboo = (function (window, document) {
     openButton = $('.open'),
     container = $('#container'),
     cover = null,
-    
     // Browser checks
     hasTouch = testTouch(),
     offset = testOffset(),
     has3d = has3d(),
     // Helpers
-    translateZ = has3d ? ' translateZ(0)' : '',
-    
+    translateZ = has3d ? ' translateZ(0)' : '',   
     // Events
     resizeEvent = 'onorientationchange' in window ? 'orientationchange' : 'resize',
     startEvent = hasTouch ? 'touchstart' : 'mousedown',
     moveEvent = hasTouch ? 'touchmove' : 'mousemove',
     endEvent = hasTouch ? 'touchend' : 'mouseup',
     cancelEvent = hasTouch ? 'touchcancel' : 'mouseup',
-
     Bamboo = function (opts) {
-        
         var _this = this;
-
         this.options = {
             menu: true,
             breakpoint: 768,
-                menuWidth: 265,
-                headerHeight: 50,
-                snapThreshold: null,
-                resize: null
-            };
-
-
+            menuWidth: 265,
+            headerHeight: 50,
+            snapThreshold: null,
+            resize: null
+        };
         // Options from user
         for (i in opts) this.options[i] = opts[i];
-
         this.resizeSite();
 
         // add required html
@@ -53,79 +45,74 @@ var Bamboo = (function (window, document) {
         container.on(startEvent, this._start.bind(this) );
         container.on(moveEvent, this._move.bind(this) );
         container.on(endEvent, this._end.bind(this) );
-        
-        }
-
+    };
     Bamboo.prototype = {
-
         info : {},
-
         x : 0,// starting point
         dx : 0,// distance moved
         ox : null,// original X
         tgt: null,// menu tap target
-            desktop: false, 
+        desktop: false, 
 
-            // returns page dimensions in array
-            dimensions: function(){
-                return [this.info.docWidth, this.info.docHeight];
-                    },
+        // returns page dimensions in array
+        dimensions: function(){
+            return [this.info.docWidth, this.info.docHeight];
+        },
 
-            offset: function(){
-                return offset;
-                    },
+        offset: function(){
+            return offset;
+        },
 
-            // function to resize site
-            resizeSite: function() {
-                // get page sizes
-                this.info.docHeight = $(window).height();
-                this.info.docWidth = $(window).width();
-                this.layout();
-                // snap
-                this.snapThreshold = this.options.snapThreshold === null ?
-                    Math.round(this.info.docWidth * 0.25) :
-                    /%/.test(this.options.snapThreshold) ?
-                    Math.round(this.info.docWidth * this.options.snapThreshold.replace('%', '') / 100) :
-                    this.options.snapThreshold;
-                // resize callback
-                if (this.options.resize) {
-                    this.options.resize();
-                }
-                    },
+        // function to resize site
+        resizeSite: function() {
+            // get page sizes
+            this.info.docHeight = $(window).height();
+            this.info.docWidth = $(window).width();
+            this.layout();
+            // snap
+            this.snapThreshold = this.options.snapThreshold === null ?
+                Math.round(this.info.docWidth * 0.25) :
+                /%/.test(this.options.snapThreshold) ?
+                Math.round(this.info.docWidth * this.options.snapThreshold.replace('%', '') / 100) :
+                this.options.snapThreshold;
+            // resize callback
+            if (this.options.resize) {
+                this.options.resize();
+            }
+        },
 
-            // set layout sizes
-            layout: function(){
-                // mobile / tablet
-                if (this.info.docWidth < this.options.breakpoint) {
-                    this.desktop = false;
-                    // container
-                    container.css({ width : this.info.docWidth, height : 'auto' });
-                    // scoller height
-                    container.find('#scroller').css({ height : this.info.docHeight + offset - this.options.headerHeight });
-                    // desktop
-                    } else {
-                        this.desktop = true;
-                        // container
-                        container.css({ 
-                            width : this.info.docWidth - this.options.menuWidth, 
-                            height : this.info.docHeight + offset
-                            });
-                        // scoller height
-                        container.find('#scroller').css({ height : 'auto' });
-                        }
-                // hide address bar
-                this.hideAddressBar();
-                },
+        // set layout sizes
+        layout: function(){
+            // mobile / tablet
+            if (this.info.docWidth < this.options.breakpoint) {
+                this.desktop = false;
+                // container
+                container.css({ width : this.info.docWidth, height : 'auto' });
+                // scoller height
+                container.find('#scroller').css({ height : this.info.docHeight + offset - this.options.headerHeight });
+                // desktop
+            } else {
+                this.desktop = true;
+                // container
+                container.css({ 
+                    width : this.info.docWidth - this.options.menuWidth, 
+                    height : this.info.docHeight + offset
+                });
+                // scoller height
+                container.find('#scroller').css({ height : 'auto' });
+            }
+            // hide address bar
+            this.hideAddressBar();
+        },
 
         // hide the ios address bar
-            hideAddressBar: function() {
-                setTimeout( function(){ window.scrollTo(0, 1); }, 50 );
-                },
+        hideAddressBar: function() {
+            setTimeout( function(){ window.scrollTo(0, 1); }, 50 );
+        },
 
-            /**
-               * Pseudo private methods
-               */
-
+        /**
+         * Pseudo private methods
+         */
         _start: function(e) {
             if (this.initiated) return;// if already started
             if (this.desktop || !this.options.menu) return; // if menu not applicable
@@ -144,7 +131,7 @@ var Bamboo = (function (window, document) {
             this.ox = -this.x + this.pointX;
             this.tgt = $(e.target);
             container.css({ 'transition-duration' : '0s' });
-            },
+        },
 
         _move: function(e) {
             if (!this.initiated) return;
@@ -188,19 +175,18 @@ var Bamboo = (function (window, document) {
             // choose direction based on dx
             if (this.dx <= 0) {
                 this._animateTo(nx, 0);
-                } else {
-                    this._animateTo(nx, this.options.menuWidth);
-                    }
+            } else {
+                this._animateTo(nx, this.options.menuWidth);
+            }
             // open button
             if (this.dx === 0 && nx === 0 && this.tgt.is('.open')) {
-                this._animateTo(this.options.menuWidth, this.options.menuWidth);
-                }
-
+                this._animateTo(this.options.menuWidth,
+                                this.options.menuWidth);
+            }
             this.ox = null;
             this.dx = 0;
             this.initiated = false;
-
-            },
+        },
 
         _animateTo: function(x,to){
             container.css({
@@ -209,7 +195,7 @@ var Bamboo = (function (window, document) {
                 });
             // hide / show cover
             this._toggleCover(to);
-            },
+        },
 
         _moveContainer: function(x){
             //container.style[transform] = 'translate(' + x + 'px,0)' + translateZ;
@@ -221,12 +207,12 @@ var Bamboo = (function (window, document) {
         _toggleCover: function(to){
             if (to > this.options.menuWidth - 50) {
                 cover.show();
-                } else {
-                    cover.hide();
-                    }
+            } else {
+                cover.hide();
             }
+        }
 
-        };
+    };
 
     /**
        * Feature Tests
@@ -262,27 +248,27 @@ var Bamboo = (function (window, document) {
 
     // 3d check
     function has3d() {
-            var el = document.createElement('p'), 
-                has3d,
-                transforms = {
-                                'webkitTransform':'-webkit-transform',
-                                'OTransform':'-o-transform',
+        var el = document.createElement('p'), 
+        has3d,
+        transforms = {
+            'webkitTransform':'-webkit-transform',
+            'OTransform':'-o-transform',
                                 'msTransform':'-ms-transform',
-                                'MozTransform':'-moz-transform',
-                                'transform':'transform'
-                            };
-            // Add it to the body to get the computed style.
-            document.body.insertBefore(el, null);
-            for (var t in transforms) {
-                        if (el.style[t] !== undefined) {
-                                        el.style[t] = "translate3d(1px,1px,1px)";
-                                        has3d = window.getComputedStyle(el).getPropertyValue(transforms[t]);
-                                    }
-                    }
-            document.body.removeChild(el);
-            return (has3d !== undefined && has3d.length > 0 && has3d !== "none");
+            'MozTransform':'-moz-transform',
+            'transform':'transform'
+        };
+        // Add it to the body to get the computed style.
+        document.body.insertBefore(el, null);
+        for (var t in transforms) {
+            if (el.style[t] !== undefined) {
+                el.style[t] = "translate3d(1px,1px,1px)";
+                has3d = window.getComputedStyle(el).getPropertyValue(transforms[t]);
+            }
         }
-
+        document.body.removeChild(el);
+        return (has3d !== undefined && has3d.length > 0 && has3d !== "none");
+    }
+    
     return Bamboo;
 
 })(window, document);

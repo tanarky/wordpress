@@ -61,13 +61,6 @@ endif;
 </head>
 
 <body <?php body_class();?>>
-
-  <!-- side menu -->
-  <nav id="main-nav" class="navigation overflow">
-    <?php wp_nav_menu(array('theme_location' => 'navbar'));?>
-  </nav>
-  <!-- /side_menu -->
-
   <div id="container">
     <header class="primary">
       <span class="open icon">&#9776;</span>
