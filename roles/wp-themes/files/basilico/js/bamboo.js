@@ -45,6 +45,9 @@ var Bamboo = (function (window, document) {
         container.on(startEvent, this._start.bind(this) );
         container.on(moveEvent, this._move.bind(this) );
         container.on(endEvent, this._end.bind(this) );
+
+        $('#burgermenu').on(startEvent, this._start.bind(this) );
+        $('#burgermenu').on(endEvent, this._end.bind(this) );
     };
     Bamboo.prototype = {
         info : {},
