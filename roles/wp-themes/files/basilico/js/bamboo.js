@@ -59,7 +59,7 @@ var Bamboo = (function (window, document) {
 
         // returns page dimensions in array
         dimensions: function(){
-            return [this.info.docWidth, this.info.docHeight];
+            return [this.info.docWidth, this.info.docHeight-50];
         },
 
         offset: function(){
@@ -69,7 +69,7 @@ var Bamboo = (function (window, document) {
         // function to resize site
         resizeSite: function() {
             // get page sizes
-            this.info.docHeight = $(window).height();
+            this.info.docHeight = $(window).height()-50;
             this.info.docWidth = $(window).width();
             this.layout();
             // snap

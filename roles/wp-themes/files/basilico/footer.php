@@ -10,6 +10,7 @@
   <!-- side menu -->
   <nav id="main-nav" class="navigation overflow">
     <?php wp_nav_menu(array('theme_location' => 'navbar'));?>
+    <img src="http://placehold.it/300x250">
   </nav>
   <!-- /side_menu -->
 

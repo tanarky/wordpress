@@ -13,6 +13,10 @@ Version: 0.1
 body {
     font-family: inherit;
 }
+img.thumb {
+    max-width: 300px;
+    max-height: 225px;
+}
 /** /Original **/
 /** Bamboo.css **/
 .overflow {
@@ -50,8 +54,6 @@ header.primary {
     color: #aaa;
     background-color: #222;
     position: relative;
-    border-bottom: solid 1px #f8f8f8;
-    border-radius: 3px 3px 0 0;
 }
 header.primary .icon {
     z-index: 22;
@@ -90,10 +92,11 @@ header.primary hgroup h1 {
     z-index: 1;
     width: 100%;
     position: absolute;
-    top: 50px;
+    top: 0;
     right: 0;
     bottom: 0;
     left: 0;
+    margin-top:50px;
 }
 .navigation ul {
     list-style: none;
@@ -120,10 +123,30 @@ header.primary hgroup h1 {
     padding: 4px 14px 4px 14px;
     line-height: 40px;
 }
-#content {
-    padding: 5px 20px;
-}
 @media only screen and (min-width: 768px) {
+    img.thumb {
+        max-width: 300px;
+        max-height: 225px;
+    }
+    dt.thumb {
+        float:left;
+        margin-right: 20px;
+    }
+    dl.article {
+        margin:0;
+    }
+    dd.content {
+        height: 225px;
+    }
+    dd h3 {
+        margin:0;
+        padding-bottom:5px;
+    }
+    dd {
+        padding:10px
+    }
+
+
     #container {
         left: 300px;
         width: auto;
@@ -135,9 +158,6 @@ header.primary hgroup h1 {
     }
     header.primary {
         height: 50px;
-/*
-        background: transparent;
-*/
         border: none
     }
     header.primary .icon {

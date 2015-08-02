@@ -36,3 +36,11 @@ ssh 接続して開発する
 ::
 
    ssh wp-dev01
+
+
+Basilico
+--------------------------------
+
+Theme color
+
+http://www.colourlovers.com/palette/582195/Chocolate_Creams

@@ -63,7 +63,9 @@ endif;
 <body <?php body_class();?>>
   <header class="primary">
     <span id="burgermenu" class="open icon">&#9776;</span>
-    <hgroup><h1><?php bloginfo('title'); ?></h1></hgroup>
+    <hgroup>
+      <h1><?php bloginfo('title'); ?></h1>
+    </hgroup>
   </header>
 
   <div id="container">
