@@ -15,7 +15,7 @@ var Bamboo = (function (window, document) {
     offset = testOffset(),
     has3d = has3d(),
     // Helpers
-    translateZ = has3d ? ' translateZ(0)' : '',   
+    translateZ = has3d ? ' translateZ(0)' : '',
     // Events
     resizeEvent = 'onorientationchange' in window ? 'orientationchange' : 'resize',
     startEvent = hasTouch ? 'touchstart' : 'mousedown',
@@ -55,11 +55,11 @@ var Bamboo = (function (window, document) {
         dx : 0,// distance moved
         ox : null,// original X
         tgt: null,// menu tap target
-        desktop: false, 
+        desktop: false,
 
         // returns page dimensions in array
         dimensions: function(){
-            return [this.info.docWidth, this.info.docHeight-50];
+            return [this.info.docWidth, this.info.docHeight];
         },
 
         offset: function(){
@@ -69,8 +69,13 @@ var Bamboo = (function (window, document) {
         // function to resize site
         resizeSite: function() {
             // get page sizes
-            this.info.docHeight = $(window).height()-50;
             this.info.docWidth = $(window).width();
+            if(this.info.docWidth < 768){
+                this.info.docHeight = $(window).height();
+            }
+            else {
+                this.info.docHeight = $(window).height()-50;
+            }
             this.layout();
             // snap
             this.snapThreshold = this.options.snapThreshold === null ?
@@ -97,8 +102,8 @@ var Bamboo = (function (window, document) {
             } else {
                 this.desktop = true;
                 // container
-                container.css({ 
-                    width : this.info.docWidth - this.options.menuWidth, 
+                container.css({
+                    width : this.info.docWidth - this.options.menuWidth,
                     height : this.info.docHeight + offset
                 });
                 // scoller height
@@ -113,7 +118,7 @@ var Bamboo = (function (window, document) {
             setTimeout( function(){ window.scrollTo(0, 1); }, 50 );
         },
 
-        /**
+                /**
          * Pseudo private methods
          */
         _start: function(e) {
@@ -142,20 +147,20 @@ var Bamboo = (function (window, document) {
 
             $('#console').html('move')
             var point = hasTouch ? e.originalEvent.touches[0] : e;
-            
+
             this.stepsX += Math.abs(point.pageX - this.pointX);
             this.stepsY += Math.abs(point.pageY - this.pointY);
 
             // We take a 10px buffer to figure out the direction of the swipe
             if (this.stepsX < 10 && this.stepsY < 10) {
                 return;
-                }
+            }
 
             // We are scrolling vertically, so skip SwipeView and give the control back to the browser
             if (!this.directionLocked && this.stepsY > this.stepsX) {
                 this.initiated = false;
                 return;
-                }
+            }
 
             e.preventDefault();
             this.directionLocked = true;
@@ -165,14 +170,14 @@ var Bamboo = (function (window, document) {
                 this.dx = nx - this.x;
                 this.x = nx;
                 this._moveContainer(nx);
-                }
+            }
 
-            },
+        },
 
         _end: function(e) {
             if (!this.initiated) return;
             if (this.desktop || !this.options.menu) return; // if menu not applicable
-            
+
             var point = hasTouch ? e.originalEvent.changedTouches[0] : e;
             var nx = parseInt(point.pageX) - this.ox;
             // choose direction based on dx
@@ -195,7 +200,7 @@ var Bamboo = (function (window, document) {
             container.css({
                 'transition-duration' : Math.floor(100 * x / this.snapThreshold) + 'ms',
                 'transform' : 'translate(' + to + 'px,0)' + translateZ
-                });
+            });
             // hide / show cover
             this._toggleCover(to);
         },
@@ -204,8 +209,8 @@ var Bamboo = (function (window, document) {
             //container.style[transform] = 'translate(' + x + 'px,0)' + translateZ;
             container.css({
                 'transform' : 'translate(' + x + 'px,0)' + translateZ
-                })
-            },
+            })
+        },
 
         _toggleCover: function(to){
             if (to > this.options.menuWidth - 50) {
@@ -217,7 +222,7 @@ var Bamboo = (function (window, document) {
 
     };
 
-    /**
+        /**
        * Feature Tests
        */
 
@@ -227,11 +232,11 @@ var Bamboo = (function (window, document) {
         if(('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch) {
             bool = true;
             $('html').addClass('touch');
-            } else {
-                $('html').addClass('pointer');
-                }
-        return bool;
+        } else {
+            $('html').addClass('pointer');
         }
+        return bool;
+    }
 
     // if iOS figure out thee address bar height offset
     function testOffset(){
@@ -241,25 +246,25 @@ var Bamboo = (function (window, document) {
             if (navigator.userAgent.indexOf('Safari') != -1 && navigator.userAgent.indexOf('CriOS') == -1) {
                 offset = 60;
             }
-            }
+        }
         // if in safari fullscreen mode
         if(("standalone" in window.navigator) && window.navigator.standalone){
             offset = 0;
-            }
-        return offset;
         }
+        return offset;
+    }
 
     // 3d check
     function has3d() {
-        var el = document.createElement('p'), 
-        has3d,
-        transforms = {
-            'webkitTransform':'-webkit-transform',
-            'OTransform':'-o-transform',
-                                'msTransform':'-ms-transform',
-            'MozTransform':'-moz-transform',
-            'transform':'transform'
-        };
+        var el = document.createElement('p'),
+            has3d,
+            transforms = {
+                'webkitTransform':'-webkit-transform',
+                'OTransform':'-o-transform',
+                'msTransform':'-ms-transform',
+                'MozTransform':'-moz-transform',
+                'transform':'transform'
+            };
         // Add it to the body to get the computed style.
         document.body.insertBefore(el, null);
         for (var t in transforms) {
@@ -271,7 +276,7 @@ var Bamboo = (function (window, document) {
         document.body.removeChild(el);
         return (has3d !== undefined && has3d.length > 0 && has3d !== "none");
     }
-    
+
     return Bamboo;
 
 })(window, document);

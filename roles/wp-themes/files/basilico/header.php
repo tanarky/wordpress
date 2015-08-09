@@ -43,6 +43,7 @@ endif;
 <!-- styles -->
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+<link href="//fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="<?php echo get_stylesheet_uri(); ?>" type="text/css" media="screen">
 <!-- /styles -->
 
@@ -60,7 +61,7 @@ endif;
 <![endif]-->
 </head>
 
-<body <?php body_class();?>>
+<body>
   <header class="primary">
     <span id="burgermenu" class="open icon">&#9776;</span>
     <hgroup>
@@ -70,3 +71,5 @@ endif;
 
   <div id="container">
     <section id="scroller" class="overflow">
+      <div class="container-fluid">
+

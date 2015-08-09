@@ -13,14 +13,76 @@ Version: 0.1
 body {
     font-family: inherit;
 }
-img.thumb {
-    max-width: 300px;
-    max-height: 225px;
+h1,h2,h3,h4 {
+    margin:15px 10px 15px 10px;
+}
+h2,h3,h4 {
+    font-size: 18px;
+}
+h4.media-heading {
+    margin: 0 0 5px 0;
+}
+.panel-body h2 {
+    margin: 0;
+}
+h1 {
+    font-weight: bold;
+    font-size: 24px;
+}
+.article-header {
+    margin: 20px 0 20px 0;
+}
+ol {
+    padding: 0 10px;
+}
+ol>li {
+    list-style:none;
+    padding-bottom:5px;
+    margin-bottom:5px;
+}
+.media-heading {
+    font-size:13px;
+}
+.media-body {
+    font-size:10px;
+}
+.panel {
+    box-shadow:none;
+    border-radius:0;
+    margin-top: 10px;
+}
+.nav-tabs {
+    margin-top: 10px;
+}
+.thumbnail {
+    border: none;
+    padding:0;
+    margin:0;
+}
+.row {
+    background-color:#fff;
+}
+.nav-tabs {
+    border-bottom: none;
+}
+.btn {
+    margin: 2px;
+}
+.btn-info {
+    background-color: #fbcfcf;
+    border-color: #cbbb99;
+    color: #755c3b;
+}
+.btn-info:hover {
+    background-color: #755c3b;
+}
+a {
+    color: #1d3994;
 }
 /** /Original **/
 /** Bamboo.css **/
 .overflow {
-    overflow: auto; 
+    overflow: auto;
     -webkit-overflow-scrolling: touch;
 }
 .loading {
@@ -51,8 +113,8 @@ img.thumb {
 
 header.primary {
     height: 50px;
-    color: #aaa;
-    background-color: #222;
+    color: #333;
+    background-color: #FBCFCF;
     position: relative;
 }
 header.primary .icon {
@@ -79,18 +141,19 @@ header.primary hgroup h1 {
     top: 0;
     left: 50px;
     right: 50px;
-    color:#ddd;
+    color: #755C3B;
     margin: 0;
     line-height: 49px;
     margin: 0;
-    font-size: 20px;
+    font-size: 32px;
+    font-family: 'Indie Flower', cursive;
 }
 
 .navigation {
-    background: #232323;
-    color: #cbc4c5;
+    background: #f8f8f8;
+    color: #888;
     z-index: 1;
-    width: 100%;
+    width: 300px;
     position: absolute;
     top: 0;
     right: 0;
@@ -98,11 +161,13 @@ header.primary hgroup h1 {
     left: 0;
     margin-top:50px;
 }
+.navigation .inner {
+    padding:10px;
+}
 .navigation ul {
     list-style: none;
     padding: 0;
     margin: 0;
-    width: 300px;
     position: relative;
 }
 .navigation li {
@@ -146,7 +211,6 @@ header.primary hgroup h1 {
         padding:10px
     }
 
-
     #container {
         left: 300px;
         width: auto;
@@ -154,7 +218,7 @@ header.primary hgroup h1 {
         -webkit-overflow-scrolling: touch;
     }
     #scroller {
-        background:#f9f9f9;
+        background:#f8f8f8;
     }
     header.primary {
         height: 50px;
@@ -164,17 +228,7 @@ header.primary hgroup h1 {
         display: none;
     }
     header.primary hgroup {
-        text-align: left;
         padding: 20px 20px 5px 20px;
-    }
-    header.primary hgroup h1 {
-        position: absolute;
-        top: 0;
-        left: 14px;
-        color: #ddd;
-        margin: 0;
-        font-size: 20px;
-        line-height: 49px;
     }
     .navigation {
         max-width: 300px;

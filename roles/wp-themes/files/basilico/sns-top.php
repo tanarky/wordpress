@@ -1,5 +1,5 @@
 <div class="sns">
-    <ul class="snsb clearfix">
+    <ul class="snsb">
       <li> <a href="https://twitter.com/share" class="twitter-share-button" data-count="vertical" data-via="" data-url="<?php echo home_url(); ?>" data-text="<?php bloginfo( 'name' ); ?>">Tweet</a><script type="text/javascript" src="//platform.twitter.com/widgets.js"></script> 
       </li>
       <li>
