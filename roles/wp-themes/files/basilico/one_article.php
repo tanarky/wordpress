@@ -9,14 +9,24 @@ if(have_posts()){
       <div class="col-lg-12">
         <div class="article-heading" style="margin-top:20px;">
           <div class="media">
-            <div class="media-body">
-              <h1 style="margin:5px 0"><?php the_title();?>ああああああああああああああああああああああああああ</h1>
-              <div style="font-size:16px;"><?php the_time('Y/m/d');?></div>
+            <div class="media-left">
+              <?php echo the_post_thumbnail('thumb150');?>
             </div>
-            <div class="media-right">
-              <a href="#">
-                <?php echo the_post_thumbnail('thumb150');?>
-              </a>
+            <div class="media-body">
+              <h1 class="article-title"><?php the_title();?></h1>
+              <div class="post-date">
+                <span class="glyphicon glyphicon-time"></span> <?php the_time('Y/m/d');?>
+              </div>
+              <div>
+                <a href="#"><span class="btn btn-info">子猫</span></a>
+                <a href="#"><span class="btn btn-info">動画</span></a>
+                <a href="#"><span class="btn btn-info">爆笑</span></a>
+                <a href="#"><span class="btn btn-info">癒やし</span></a>
+                <a href="#"><span class="btn btn-info">まとめ</span></a>
+                <a href="#"><span class="btn btn-info">短編</span></a>
+                <a href="#"><span class="btn btn-info">海外</span></a>
+              </div>
+
             </div>
           </div>
         </div>
@@ -90,37 +100,48 @@ labo_news" class="share_tw">
       <img src="http://placehold.it/300x250">
     </div>
 
-    <h3>関連記事</h3>
-    <div style="padding:0 10px;">
-      <ol>
+
+<?php
+// 関連記事
+// 同一カテゴリから新着記事をひっぱってきてる
+// TODO: $post == NULL の時の対応
+$categories = get_the_category($post->ID);
+$category_ids = array();
+foreach($categories as $c){
+    array_push($category_ids, $c->cat_ID);
+}
+$args = array(
+    'post__not_in'  => array($post->ID),
+    'posts_per_page'=> 10,
+    'category__in'  => $category_ids,
+    'orderby'       => 'rand',
+);
+$st_query = new WP_Query($args);
+if($st_query->have_posts()){
+    echo '<h3>関連記事</h3><div style="padding:0 10px;"><ol>';
+    while($st_query->have_posts()){
+        $st_query->the_post();
+?>
         <li>
           <div class="media">
             <div class="media-left">
-              <a href="#">
-                <img alt="64x64" src="http://placehold.it/64x64">
+              <a href="<?php the_permalink();?>">
+                <?php the_post_thumbnail('thumb100');?>
               </a>
             </div>
             <div class="media-body">
-              <h4 class="media-heading">Media heading</h4>
-              Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis.
+                <a href="<?php the_permalink();?>">
+                  <h4 class="media-heading"><?php the_title(); ?></h4>
+                </a>
+              <?php the_excerpt();?>
             </div>
           </div>
         </li>
-        <li>
-          <div class="media">
-            <div class="media-left">
-              <a href="#">
-                <img alt="64x64" src="http://placehold.it/64x64">
-              </a>
-            </div>
-            <div class="media-body">
-              <h4 class="media-heading">Media heading</h4>
-              Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis.
-            </div>
-          </div>
-        </li>
-      </ol>
-    </div>
+<?php
+    }
+    echo '</ol></div>';
+}
+?>
   </div>
 </div>
   </div>

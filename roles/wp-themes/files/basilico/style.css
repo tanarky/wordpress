@@ -79,6 +79,12 @@ ol>li {
 a {
     color: #1d3994;
 }
+.post-date {
+    font-size: 14px;
+}
+.article-title {
+    margin:5px 0;
+}
 /** /Original **/
 /** Bamboo.css **/
 .overflow {
