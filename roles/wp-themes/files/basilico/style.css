@@ -13,24 +13,28 @@ Version: 0.1
 body {
     font-family: inherit;
 }
-h1,h2,h3,h4 {
-    margin:15px 10px 15px 10px;
-}
-h2,h3,h4 {
-    font-size: 18px;
-}
 h4.media-heading {
     margin: 0 0 5px 0;
 }
 .panel-body h2 {
     margin: 0;
 }
-h1 {
+h1,h2,h3,h4,h5 {
     font-weight: bold;
-    font-size: 24px;
+}
+h1 { font-size: 24px; }
+h2 { font-size: 23px; }
+h3 { font-size: 22px; }
+h4 { font-size: 21px; }
+h5 { font-size: 20px; }
+nav h3 {
+    margin:15px 0 10px 5px;
+}
+.panel-body h2 {
+    font-size: 18px;
 }
 .article-header {
-    margin: 20px 0 20px 0;
+    margin:20px 0 0 0;
 }
 ol {
     padding: 0 10px;
@@ -51,8 +55,9 @@ ol>li {
     border-radius:0;
     margin-top: 10px;
 }
-.nav-tabs {
+ul.nav-tabs {
     margin-top: 10px;
+    border-bottom: 1px solid #ddd;
 }
 .thumbnail {
     border: none;
@@ -76,14 +81,33 @@ ol>li {
 .btn-info:hover {
     background-color: #755c3b;
 }
+.btn-info:hover a{
+    color: #fdfdfd;
+}
 a {
     color: #1d3994;
 }
-.post-date {
+.article-post-date {
     font-size: 14px;
+    margin: 4px 0;
 }
 .article-title {
-    margin:5px 0;
+    margin:0;
+    line-height:1.2;
+}
+.article-body {
+    font-size: 120%;
+    line-height: 1.5;
+}
+.article-body img{
+    margin: 0 auto;
+}
+.nav-tabs > li, .nav-pills > li {
+    float:none;
+    display:inline-block;
+}
+.nav-tabs, .nav-pills {
+    text-align:center;
 }
 /** /Original **/
 /** Bamboo.css **/

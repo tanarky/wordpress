@@ -17,9 +17,9 @@ if(have_posts()){
               <?php the_title(); ?>
               </a></h2>
 
-              <p>
+
               <?php the_excerpt(); ?>
-              </p>
+
             </div>
           </div>
         </div>
@@ -27,7 +27,7 @@ if(have_posts()){
 <?php
         if($i % 3 === 0) echo '</div>';
     }
-    if($i % 3 != 1) echo '</div>';
+    if($i % 3 !== 0) echo '</div>';
 }
 
 if(function_exists("pagination")){

@@ -51,25 +51,6 @@ add_filter('excerpt_more', 'custom_excerpt_more');
 
 //スマホ表示分岐
 function is_mobile(){
-    //$useragents = array(
-    //    'iPhone', // iPhone
-    //    'iPod', // iPod touch
-    //    'Android.*Mobile', // 1.5+ Android *** Only mobile
-    //    'Windows.*Phone', // *** Windows Phone
-    //    'dream', // Pre 1.5 Android
-    //    'CUPCAKE', // 1.5+ Android
-    //    'blackberry9500', // Storm
-    //    'blackberry9530', // Storm
-    //    'blackberry9520', // Storm v2
-    //    'blackberry9550', // Storm v2
-    //    'blackberry9800', // Torch
-    //    'webOS', // Palm Pre Experimental
-    //    'incognito', // Other iPhone browser
-    //    'webmate' // Other iPhone browser
-    //
-    //);
-    //$pattern = '/'.implode('|', $useragents).'/i';
-    //return preg_match($pattern, $_SERVER['HTTP_USER_AGENT']);
     error_log('unsupported function: is_mobile()');
     return true;
 }
@@ -77,7 +58,6 @@ function is_mobile(){
 add_theme_support('post-thumbnails');
 add_image_size('thumb100',100,100,true);
 add_image_size('thumb150',150,150,true);
-
 
 //カスタムメニュー
 register_nav_menus(array('navbar' => 'ナビゲーションバー'));
@@ -178,11 +158,9 @@ add_action( 'pre_ping', 'no_self_pingst' );
 
 //iframeのレスポンシブ対応
 function wrap_iframe_in_div($the_content) {
-  if ( is_singular() ) {
-    $the_content = preg_replace('/< *?iframe/i', '<div class="youtube-container"><iframe', $the_content);
+    $the_content = preg_replace('/< *?iframe/i', '<div class="embed-responsive embed-responsive-16by9"><iframe', $the_content);
     $the_content = preg_replace('/<\/ *?iframe *?>/i', '</iframe></div>', $the_content);
-  }
-  return $the_content;
+    return $the_content;
 }
 add_filter('the_content','wrap_iframe_in_div');
 

@@ -10,7 +10,7 @@
   </div>
   <!-- side menu -->
   <nav id="main-nav" class="navigation overflow">
-    <h3 style="margin: 10px 10px 10px 10px">PR</h3>
+    <h3>PR</h3>
     <img src="//placehold.it/300x250">
 
     <h3>新着記事</h3>
