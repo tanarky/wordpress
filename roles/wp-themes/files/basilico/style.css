@@ -101,7 +101,10 @@ a {
 }
 .article-body img{
     margin: 0 auto;
+    display: block;
+    width: 100%;
 }
+/*
 .nav-tabs > li, .nav-pills > li {
     float:none;
     display:inline-block;
@@ -109,6 +112,7 @@ a {
 .nav-tabs, .nav-pills {
     text-align:center;
 }
+*/
 /** /Original **/
 /** Bamboo.css **/
 .overflow {

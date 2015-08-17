@@ -4,7 +4,7 @@ if(have_posts()){
        the_post();
 ?>
 <div class="row">
-  <div class="col-lg-8 col-lg-offset-2">
+  <div class="col-lg-8">
     <div class="row">
       <div class="col-lg-12">
         <div class="article-header">
@@ -47,7 +47,7 @@ if(have_posts()){
 ?>
 
 <div class="row" style="padding-top: 20px;">
-  <div class="col-lg-8 col-lg-offset-2">
+  <div class="col-lg-8">
     <div class="row">
       <div class="col-lg-6">
         <div style="">
