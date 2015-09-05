@@ -167,9 +167,6 @@ header.primary .side {
     left: auto;
     right: 0;
 }
-header.primary hgroup {
-    text-align: center;
-}
 header.primary hgroup h1 {
     z-index: 20;
     position: absolute;
@@ -262,8 +259,8 @@ header.primary hgroup h1 {
     header.primary .icon {
         display: none;
     }
-    header.primary hgroup {
-        padding: 20px 20px 5px 20px;
+    header.primary hgroup h1{
+        left: 20px;
     }
     .navigation {
         max-width: 300px;
