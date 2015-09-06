@@ -50,7 +50,7 @@ if(have_posts()){
   <div class="col-lg-10">
     <div class="row">
       <div class="col-lg-6">
-        <div style="">
+        <div class="content-ad">
           <img src="http://placehold.it/300x250">
         </div>
         <h3>タグ</h3>
@@ -87,13 +87,13 @@ if(have_posts()){
               }(document, 'script', 'facebook-jssdk'));</script>
             <div class="fb-like" data-layout="box_count"></div>
           </div>
+          <br><br>
         </div>
       </div>
       <div class="col-lg-6">
-        <div>
+        <div class="content-ad">
           <img src="http://placehold.it/300x250">
         </div>
-
 
 <?php
 // 関連記事

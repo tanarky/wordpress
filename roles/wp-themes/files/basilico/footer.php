@@ -18,7 +18,6 @@
   </nav>
   <!-- /side_menu -->
 
-
 <script src="http://code.jquery.com/jquery-2.0.0.min.js"></script>
 <script src="<?php echo get_template_directory_uri(); ?>/js/bamboo.js"></script>
 <script>

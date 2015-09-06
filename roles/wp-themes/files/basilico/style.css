@@ -21,14 +21,22 @@ h4.media-heading {
 }
 h1,h2,h3,h4,h5 {
     font-weight: bold;
+    margin: 20px 0 10px 0;
 }
 h1 { font-size: 24px; }
+h1>a:hover {
+    text-decoration: none;
+    color: inherit;
+}
+h1>a {
+    color: inherit;
+}
 h2 { font-size: 23px; }
 h3 { font-size: 22px; }
 h4 { font-size: 21px; }
 h5 { font-size: 20px; }
 nav h3 {
-    margin:15px 0 10px 5px;
+    margin:20px 0 10px 5px;
     font-size: 18px;
 }
 .panel-body h2 {
@@ -36,6 +44,9 @@ nav h3 {
 }
 .article-header {
     margin:20px 0 0 0;
+}
+div.content-ad {
+    text-align:center;
 }
 ol {
     padding: 0 10px;
@@ -101,19 +112,13 @@ a {
     line-height: 1.5;
 }
 .article-body img{
-    margin: 0 auto;
-    display: block;
-    width: 100%;
+    max-width: 100%;
+    height: auto;
 }
-/*
-.nav-tabs > li, .nav-pills > li {
-    float:none;
-    display:inline-block;
+iframe.twitter-tweet {
+    margin-left: auto;
+    margin-right: auto;
 }
-.nav-tabs, .nav-pills {
-    text-align:center;
-}
-*/
 /** /Original **/
 /** Bamboo.css **/
 .overflow {
@@ -182,7 +187,7 @@ header.primary hgroup h1 {
 }
 
 .navigation {
-    background: #f8f8f8;
+    background: #f7f7f8;
     color: #888;
     z-index: 1;
     width: 300px;
@@ -250,7 +255,7 @@ header.primary hgroup h1 {
         -webkit-overflow-scrolling: touch;
     }
     #scroller {
-        background:#f8f8f8;
+        background:#f7f7f8;
     }
     header.primary {
         height: 50px;

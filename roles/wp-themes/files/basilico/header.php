@@ -65,7 +65,7 @@ endif;
   <header class="primary">
     <span id="burgermenu" class="open icon">&#9776;</span>
     <hgroup>
-      <h1><?php bloginfo('title'); ?></h1>
+      <h1><a href="/"><?php bloginfo('title'); ?></a></h1>
     </hgroup>
   </header>
 

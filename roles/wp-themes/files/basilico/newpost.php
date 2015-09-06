@@ -11,7 +11,9 @@ if($st_query->have_posts()){
             echo the_post_thumbnail('thumb100');
         }
         echo '</a></div><div class="media-body">';
-        echo '<a href="#">';
+        echo '<a href="';
+        the_permalink();
+        echo '">';
         echo '<h4 class="media-heading">';
         echo the_title();
         echo '</h4></a>';

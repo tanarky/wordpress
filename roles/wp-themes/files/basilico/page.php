@@ -1,7 +1,5 @@
 <?php get_header(); ?>
 
-hello
-
 <div id="content" class="clearfix">
   <div id="contentInner">
     <main>
