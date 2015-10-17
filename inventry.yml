@@ -1,11 +1,2 @@
-[dev]
-wp-dev01
-
-[standalone]
-wp-gw01
-
-[development:children]
-dev
-
-[production:children]
-standalone
+[cms.yakyu.click]
+yc-gw01

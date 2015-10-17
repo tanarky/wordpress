@@ -1,4 +1,4 @@
-- hosts: standalone
+- hosts: cms.yakyu.click
   sudo: true
   roles:
     - {role: users,    tags: ['init']}
