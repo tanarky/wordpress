@@ -10,7 +10,7 @@
     </div>
     <div class="navbar-collapse collapse navbar-responsive-collapse">
       <ul class="nav navbar-nav navbar-right">
-        <li style="width:270px">
+        <li>
           <form class="navbar-form" role="search">
             <div class="input-group">
               <input class="form-control" placeholder="Search" type="text">

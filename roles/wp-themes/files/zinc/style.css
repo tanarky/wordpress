@@ -8798,92 +8798,75 @@ a:hover {
   padding-top: 10px;
 }
 
-/* line 36, ../sass/styles.scss */
+/* line 35, ../sass/styles.scss */
 .navbar-default {
   border: none;
 }
 
-/* line 39, ../sass/styles.scss */
-nav.navbar-fixed-top ul.navbar-nav > li > a {
-  font-size: 92%;
-  height: 50px;
-}
-
-/* line 43, ../sass/styles.scss */
-nav.navbar-fixed-top ul.nav-pills > li > a {
-  border-radius: 0;
-  color: #fff;
-  padding: 6px 10px;
-}
-
-/* line 48, ../sass/styles.scss */
+/* line 42, ../sass/styles.scss */
 nav.navbar-fixed-top .navbar-right {
   margin-right: 0;
 }
-
-/* line 51, ../sass/styles.scss */
-nav.navbar-fixed-top .navbar-collapse .navbar-form {
+/* line 45, ../sass/styles.scss */
+nav.navbar-fixed-top .container > .navbar-header,
+nav.navbar-fixed-top .container > .navbar-collapse {
+  margin-left: -10px;
+  margin-right: -10px;
+}
+/* line 52, ../sass/styles.scss */
+nav.navbar-fixed-top ul.navbar-nav {
+  font-size: 92%;
+  height: 50px;
+}
+/* line 56, ../sass/styles.scss */
+nav.navbar-fixed-top ul.navbar-nav .navbar-form {
   border: none;
   margin: 0;
   padding: 8px 0px;
 }
-
-/* line 56, ../sass/styles.scss */
-nav.navbar-fixed-top > .container > .navbar-header > a.navbar-brand,
-nav.navbar-fixed-top > .container-fluid > .navbar-header > a.navbar-brand {
-  padding: 0;
-}
-
-/* line 60, ../sass/styles.scss */
-nav.navbar-fixed-top > .container > .navbar-header,
-nav.navbar-fixed-top > .container > .navbar-collapse,
-nav.navbar-fixed-top > .container-fluid > .navbar-header,
-nav.navbar-fixed-top > .container-fluid > .navbar-collapse {
-  margin-left: -10px;
-  margin-right: -10px;
-}
-
-/* line 67, ../sass/styles.scss */
+/* line 64, ../sass/styles.scss */
 nav.navbar-fixed-top .link-header {
   background-color: #486b00;
 }
-
-/* line 70, ../sass/styles.scss */
+/* line 67, ../sass/styles.scss */
+nav.navbar-fixed-top .link-header a {
+  border-radius: 0;
+  color: #fff;
+  padding: 6px 10px;
+}
+/* line 73, ../sass/styles.scss */
+nav.navbar-fixed-top .link-header li {
+  margin-left: 0;
+}
+/* line 76, ../sass/styles.scss */
 nav.navbar-fixed-top .link-header li a:hover {
   background-color: #2e4600;
 }
-
-/* line 73, ../sass/styles.scss */
+/* line 81, ../sass/styles.scss */
 nav.navbar-fixed-top .link-header li.active a {
   background-color: #7d4427;
 }
-
-/* line 76, ../sass/styles.scss */
+/* line 84, ../sass/styles.scss */
 nav.navbar-fixed-top .link-header li.active a:hover {
   background-color: #7d4427;
 }
 
-/* line 79, ../sass/styles.scss */
-nav.navbar-fixed-top .link-header li {
-  margin-left: 0;
-}
-
-/* line 85, ../sass/styles.scss */
+/* line 92, ../sass/styles.scss */
 .form-control {
   box-shadow: none;
 }
 
-/* line 88, ../sass/styles.scss */
+/* line 95, ../sass/styles.scss */
 .mgb {
   margin-bottom: 20px;
 }
 
-/* line 91, ../sass/styles.scss */
+/* line 98, ../sass/styles.scss */
 .ad {
   text-align: center;
 }
 
-/* line 94, ../sass/styles.scss */
+/* line 101, ../sass/styles.scss */
 .arrow_box {
   position: relative;
   background: #efefef;
@@ -8893,7 +8876,7 @@ nav.navbar-fixed-top .link-header li {
   margin-bottom: 30px;
 }
 
-/* line 102, ../sass/styles.scss */
+/* line 109, ../sass/styles.scss */
 .arrow_box:after,
 .arrow_box:before {
   top: 100%;
@@ -8906,7 +8889,7 @@ nav.navbar-fixed-top .link-header li {
   pointer-events: none;
 }
 
-/* line 113, ../sass/styles.scss */
+/* line 120, ../sass/styles.scss */
 .arrow_box:after {
   border-color: rgba(239, 239, 239, 0);
   border-top-color: #efefef;
@@ -8914,7 +8897,7 @@ nav.navbar-fixed-top .link-header li {
   margin-left: -30px;
 }
 
-/* line 119, ../sass/styles.scss */
+/* line 126, ../sass/styles.scss */
 .arrow_box:before {
   border-color: rgba(221, 221, 221, 0);
   border-top-color: #ddd;
@@ -8922,14 +8905,14 @@ nav.navbar-fixed-top .link-header li {
   margin-left: -33px;
 }
 
-/* line 126, ../sass/styles.scss */
+/* line 133, ../sass/styles.scss */
 ol.rnk {
   list-style-type: none;
   line-height: 1.3;
   font-size: 95%;
   padding: 0;
 }
-/* line 132, ../sass/styles.scss */
+/* line 139, ../sass/styles.scss */
 ol.rnk .rnk-num {
   display: block;
   float: left;
@@ -8941,28 +8924,28 @@ ol.rnk .rnk-num {
   color: #333;
   font-style: italic;
 }
-/* line 144, ../sass/styles.scss */
+/* line 151, ../sass/styles.scss */
 ol.rnk .media {
   margin: 8px 0;
   border-bottom: 1px solid #ddd;
   padding-bottom: 8px;
 }
-/* line 150, ../sass/styles.scss */
+/* line 157, ../sass/styles.scss */
 ol.rnk .media-body div {
   padding-bottom: 2px;
 }
-/* line 154, ../sass/styles.scss */
+/* line 161, ../sass/styles.scss */
 ol.rnk .date {
   color: #666;
   font-size: 90%;
 }
-/* line 159, ../sass/styles.scss */
+/* line 166, ../sass/styles.scss */
 ol.rnk .name {
   color: #666;
   font-size: 90%;
 }
 
-/* line 165, ../sass/styles.scss */
+/* line 172, ../sass/styles.scss */
 h1, .h1,
 h2, .h2,
 h3, .h3,
@@ -8973,43 +8956,43 @@ h6, .h6 {
   font-size: 24px;
 }
 
-/* line 174, ../sass/styles.scss */
+/* line 181, ../sass/styles.scss */
 .media {
   margin-top: 0;
 }
 
-/* line 177, ../sass/styles.scss */
+/* line 184, ../sass/styles.scss */
 .panel {
   box-shadow: none;
   border-radius: 0;
   margin-top: 10px;
 }
 
-/* line 182, ../sass/styles.scss */
+/* line 189, ../sass/styles.scss */
 .panel-default {
   border-color: #ccc;
 }
 
-/* line 185, ../sass/styles.scss */
+/* line 192, ../sass/styles.scss */
 .panel-body h2 {
   margin: 0;
   font-size: 18px;
 }
 
-/* line 189, ../sass/styles.scss */
+/* line 196, ../sass/styles.scss */
 .panel-body {
   padding: 10px;
 }
-/* line 192, ../sass/styles.scss */
+/* line 199, ../sass/styles.scss */
 .panel-body p {
   line-height: 1.4;
 }
-/* line 196, ../sass/styles.scss */
+/* line 203, ../sass/styles.scss */
 .panel-body h2 {
   margin: 0;
 }
 
-/* line 200, ../sass/styles.scss */
+/* line 207, ../sass/styles.scss */
 .thumbnail {
   border: none;
   padding: 0;
@@ -9017,12 +9000,12 @@ h6, .h6 {
 }
 
 @media (max-width: 767px) {
-  /* line 208, ../sass/styles.scss */
+  /* line 215, ../sass/styles.scss */
   body {
     margin-top: 50px;
   }
 
-  /* line 211, ../sass/styles.scss */
+  /* line 218, ../sass/styles.scss */
   .navbar-collapse .navbar-form {
     padding: 8px 10px;
   }
