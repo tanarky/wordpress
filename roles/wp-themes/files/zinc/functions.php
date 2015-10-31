@@ -1,68 +1,13 @@
 <?php
-function register_jq_script() {
-	if (!is_admin()) {
-		$script_dir = get_template_directory_uri();
-		wp_deregister_script( 'jquery' );
-		wp_enqueue_script( 'jquery', 'http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js',array(), false, false);
-	}
-}
-add_action('wp_enqueue_scripts','register_jq_script');
+define("THEME_NAME", "zinc");
 
-//WordPress の投稿スラッグを自動的に生成する
-function auto_post_slug( $slug, $post_ID, $post_status, $post_type ) {
-    if ( preg_match( '/(%[0-9a-f]{2})+/', $slug ) ) {
-        $slug = utf8_uri_encode( $post_type ) . '-' . $post_ID;
-    }
-    return $slug;
-}
-add_filter( 'wp_unique_post_slug', 'auto_post_slug', 10, 4  );
-
-//カスタム背景
-$custom_bgcolor_defaults = array(
-        'default-color' => '#f2f2f2',
-);
-add_theme_support( 'custom-background', $custom_bgcolor_defaults );
-
-//カスタムヘッダー
-$custom_header = array(
- 'random-default' => false,
- 'width' => 980,
- 'height' => 250,
- 'flex-height' => true,
- 'flex-width' => false,
- 'default-text-color' => '',
- 'header-text' => false,
- 'uploads' => true,
- 'default-image' => get_template_directory_uri() . '/images/stinger5.png',
-);
-add_theme_support( 'custom-header', $custom_header );
-
-// 抜粋の長さを変更する
-function custom_excerpt_length( $length ) {
-     return 40;	
-}	
-add_filter( 'excerpt_length', 'custom_excerpt_length', 999 );
-
-// 文末文字を変更する
-function custom_excerpt_more($more) {
-	return ' ... ';
-}
-add_filter('excerpt_more', 'custom_excerpt_more');
-
-//スマホ表示分岐
-function is_mobile(){
-    error_log('unsupported function: is_mobile()');
-    return true;
-}
-//アイキャッチサムネイル
+// アイキャッチサムネイル
 add_theme_support('post-thumbnails');
-add_image_size('thumb100',100,100,true);
-add_image_size('thumb150',150,150,true);
+add_image_size('thumb60',   60,  60, true);
+add_image_size('thumb100', 100, 100, true);
+add_image_size('thumb150', 150, 150, true);
 
-//カスタムメニュー
-register_nav_menus(array('navbar' => 'ナビゲーションバー'));
-
-//RSS
+// RSS
 add_theme_support('automatic-feed-links');
 
 // 管理画面にオリジナルのスタイルを適用
@@ -164,135 +109,90 @@ function wrap_iframe_in_div($the_content) {
 }
 add_filter('the_content','wrap_iframe_in_div');
 
-//ウイジェット追加
-if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar(4) )
-register_sidebars(1,
-    array(
-    'name'=>'サイドバーウイジェット',
-    'before_widget' => '<ul><li>',
-    'after_widget' => '</li></ul>',
-    'before_title' => '<h4 class="menu_underh2">',
-    'after_title' => '</h4>',
-    ));
-register_sidebars(1,
-    array(
-    'name'=>'スクロール広告用',
-    'description' => '「テキスト」をここにドロップして内容を入力して下さい。アドセンスは禁止です。※PC以外では非表示部分',
-    'before_widget' => '<ul><li>',
-    'after_widget' => '</li></ul>',
-    'before_title' => '<h4 class="menu_underh2" style="text-align:left;">',
-    'after_title' => '</h4>',
-    ));
-register_sidebars(1,
-    array(
-    'name'=>'Googleアドセンス用336px',
-    'description' => '「テキスト」をここにドロップしてコードを入力して下さい。タイトルは反映されません。',
-    'before_widget' => '',
-    'after_widget' => '',
-    'before_title' => '<p style="display:none">',
-    'after_title' => '</p>',
-    ));
 
-register_sidebars(1,
-    array(
-    'name'=>'Googleアドセンスのスマホ用300px',
-    'description' => '「テキスト」をここにドロップしてコードを入力して下さい。タイトルは反映されません。',
-    'before_widget' => '',
-    'after_widget' => '',
-    'before_title' => '<p style="display:none">',
-    'after_title' => '</p>',
-    ));
-
-
-//更新日の追加
-function get_mtime($format) {
-    $mtime = get_the_modified_time('Ymd');
-    $ptime = get_the_time('Ymd');
-    if ($ptime > $mtime) {
-        return get_the_time($format);
-    } elseif ($ptime === $mtime) {
-        return null;
-    } else {
-        return get_the_modified_time($format);
-    }
+// サイドバーウィジェット
+if(!function_exists('dynamic_sidebar') || !dynamic_sidebar(1)){
+    register_sidebars(1,
+                      array(
+                          'name'=>'サイドバー',
+                          'before_widget' => '',
+                          'after_widget'  => '',
+                          'before_title'  => '',
+                          'after_title'   => '',
+                      ));
 }
 
-//テーマカスタマイザーで編集しない方は削除して下さい（ここから）
+// カスタムメニュー
+register_nav_menu('global_header', 'グローバルヘッダー');
 
-function stinger_customize_register($wp_customize) {
-
-$wp_customize->add_section( 'stinger_logo_image', array(
-'title' => 'ロゴ画像',
-'priority' => 10,
-) );
- 
-$wp_customize->add_setting( 'stinger_logo_image', array(
-'default' => '',
-'type' => 'option',
-'capability' => 'edit_theme_options',
-) );
- 
-$wp_customize->add_control( new WP_Customize_Image_Control(
-$wp_customize,
-'logo_Image',
-array(
-'label' => '画像',
-'section' => 'stinger_logo_image',
-'settings' => 'stinger_logo_image',
-)
-) );
+function wp_theme_customize_register($wp_customize) {
+    $wp_customize->add_section(THEME_NAME. '_logo', array(
+        'title'    => 'ロゴ画像',
+        'priority' => 10,
+    ));
+    $wp_customize->add_setting(THEME_NAME. '_logo', array(
+        'default'    => '',
+        'type'       => 'option',
+        'capability' => 'edit_theme_options',
+    ));
+    $wp_customize->add_control(new WP_Customize_Image_Control(
+        $wp_customize,
+        'logo',
+        array(
+            'label'    => '画像',
+            'section'  => THEME_NAME. '_logo',
+            'settings' => THEME_NAME. '_logo',
+        )
+    ));
      
     // Color
-    $wp_customize->add_section( 'stinger_menu_customize', array(
-    'title' => __( '基本色（キーカラー）', 'stinger' ),
-    'priority' => 30,
-    ) );
-	  
-	$wp_customize->add_setting( 'stinger_menu_logocolor', array( 'default' => '#1a1a1a', ) );
-    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'stinger_menu_logocolor', array(
-    'label' => __( 'グループ1（ブログタイトル色など）', 'stinger' ),
-    'section' => 'stinger_menu_customize',
-    'settings' => 'stinger_menu_logocolor',
-    ) ) );
-
-    $wp_customize->add_setting( 'stinger_menu_bgcolor', array( 'default' => '#f3f3f3', ) );
-    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'stinger_menu_bgcolor', array(
-    'label' => __( 'グループ2（吹き出し背景など）', 'stinger' ),
-    'section' => 'stinger_menu_customize',
-    'settings' => 'stinger_menu_bgcolor',
-    ) ) );
-     
-    $wp_customize->add_setting( 'stinger_menu_color', array( 'default' => '#1a1a1a', ) );
-    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'stinger_menu_color', array(
-    'label' => __( '吹き出し内の文字（H2）', 'stinger' ),
-    'section' => 'stinger_menu_customize',
-    'settings' => 'stinger_menu_color',
-    ) ) );
-	  
-    $wp_customize->add_setting( 'stinger_menu_comcolor', array( 'default' => '#f3f3f3', ) );
-    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'stinger_menu_comcolor', array(
-    'label' => __( 'グループ3（淡い色推奨）', 'stinger' ),
-    'section' => 'stinger_menu_customize',
-    'settings' => 'stinger_menu_comcolor',
-    ) ) );
-
-    $wp_customize->add_setting( 'stinger_rss_color', array( 'default' => '#f3f3f3', ) );
-    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'stinger_rss_color', array(
-    'label' => __( 'グループ4（RSS）', 'stinger' ),
-    'section' => 'stinger_menu_customize',
-    'settings' => 'stinger_rss_color',
-    ) ) );
-
-    $wp_customize->add_setting( 'stinger_form_color', array( 'default' => '#f3f3f3', ) );
-    $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'stinger_form_color', array(
-    'label' => __( 'グループ5（検索バー）', 'stinger' ),
-    'section' => 'stinger_menu_customize',
-    'settings' => 'stinger_form_color',
-    ) ) );
-	  
-         }
-    add_action('customize_register', 'stinger_customize_register');
-    
-    function stinger_customize_css()
-    {
-    }
+    $wp_customize->add_section(THEME_NAME. '_section_color_theme', array(
+        'title'    => 'テーマカラー',
+        'priority' => 30,
+    ));
+	$wp_customize->add_setting(THEME_NAME. '_setting_color_main', array('default'=> '#486b00'));
+    $wp_customize->add_control(
+        new WP_Customize_Color_Control($wp_customize,
+                                       THEME_NAME. '_setting_color_main',
+                                       array(
+                                           'label'    => 'メインカラー',
+                                           'section'  => THEME_NAME. '_section_color_theme',
+                                           'settings' => THEME_NAME. '_setting_color_main',
+                                       )
+        )
+    );
+	$wp_customize->add_setting(THEME_NAME. '_setting_color_sub1', array('default'=> '#2e4600'));
+    $wp_customize->add_control(
+        new WP_Customize_Color_Control($wp_customize,
+                                       THEME_NAME. '_setting_color_sub1',
+                                       array(
+                                           'label'    => 'サブカラー1',
+                                           'section'  => THEME_NAME. '_section_color_theme',
+                                           'settings' => THEME_NAME. '_setting_color_sub1',
+                                       )
+        )
+    );
+	$wp_customize->add_setting(THEME_NAME. '_setting_color_sub2', array('default'=> '#a2c523'));
+    $wp_customize->add_control(
+        new WP_Customize_Color_Control($wp_customize,
+                                       THEME_NAME. '_setting_color_sub2',
+                                       array(
+                                           'label'    => 'サブカラー2',
+                                           'section'  => THEME_NAME. '_section_color_theme',
+                                           'settings' => THEME_NAME. '_setting_color_sub2',
+                                       )
+        )
+    );
+	$wp_customize->add_setting(THEME_NAME. '_setting_color_accent', array('default'=> '#7d4427'));
+    $wp_customize->add_control(
+        new WP_Customize_Color_Control($wp_customize,
+                                       THEME_NAME. '_setting_color_accent',
+                                       array(
+                                           'label'    => 'アクセントカラー',
+                                           'section'  => THEME_NAME. '_section_color_theme',
+                                           'settings' => THEME_NAME. '_setting_color_accent',
+                                       )
+        )
+    );
+}
+add_action('customize_register', 'wp_theme_customize_register');

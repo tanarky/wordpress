@@ -7,6 +7,7 @@
     <title><?php echo bloginfo('name');?></title>
 
     <link rel="stylesheet" href="<?php echo get_stylesheet_uri(); ?>" type="text/css" media="screen">
+    <style type="text/css"><?php include('modules/custom_style.php');?></style>
     <script src="<?php echo get_template_directory_uri(); ?>/js/jquery-1.11.3.min.js"></script>
     <script src="<?php echo get_template_directory_uri(); ?>/js/bootstrap.min.js"></script>
     <!--[if lt IE 9]>
@@ -22,7 +23,7 @@
         </div>
         <div class="col-md-4 sub-column">
           <div class="ad mgb">
-            <img src="//placehold.it/300x250" />
+            <?php if(function_exists('dynamic_sidebar') && dynamic_sidebar(1)){} ?>
           </div>
           <hr>
           <?php include('modules/latest_articles.php'); ?>

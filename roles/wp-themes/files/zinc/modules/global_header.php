@@ -6,7 +6,9 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
       </button>
-      <a href="/"><img src="<?php echo get_template_directory_uri(). '/images/logo.png'; ?>" /></a>
+      <a href="/">
+        <img alt="<?php bloginfo('name');?>" src="<?php echo esc_url(get_option(THEME_NAME. '_logo', '//placehold.it/200x50')); ?>" />
+      </a>
     </div>
     <div class="navbar-collapse collapse navbar-responsive-collapse">
       <ul class="nav navbar-nav navbar-right">
@@ -24,23 +26,24 @@
       </ul>
     </div>
     <div class="navbar-collapse collapse navbar-responsive-collapse link-header">
-      <ul class="nav nav-pills navbar-left nav-cats">
-        <li>
-          <a data-method="delete" href="/users/sign_out">家電</a>
-        </li>
-        <li>
-          <a data-method="delete" href="/users/sign_out">ファッション</a>
-        </li>
-        <li>
-          <a data-method="delete" href="/users/sign_out">TV</a>
-        </li>
-        <li class="active">
-          <a data-method="delete" href="/users/sign_out">冷蔵庫</a>
-        </li>
-        <li>
-          <a data-method="delete" href="/users/sign_out">洗濯機</a>
-        </li>
-      </ul>
+
+<?php
+$header_navi = wp_nav_menu(
+    array(
+        'container'  => '',
+        'menu'       => 'グローバルヘッダー',
+        'menu_class' => 'nav nav-pills navbar-left nav-cats',
+        'items_wrap' => '<ul class="%2$s">%3$s</ul>',
+        'echo'       => false
+    )
+);
+$header_navi = preg_replace('/li id=".*?"/', 'li', $header_navi);
+$header_navi = preg_replace('/ current_page_item/', '', $header_navi);
+$header_navi = preg_replace('/ current-menu-item/', ' active', $header_navi);
+$header_navi = preg_replace('/ menu-item[^\s"]*/', '', $header_navi);
+$header_navi = preg_replace('/menu-item\s?/', '', $header_navi);
+echo $header_navi;
+?>
     </div>
   </div>
 </nav>
