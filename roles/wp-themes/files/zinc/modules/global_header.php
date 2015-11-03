@@ -25,13 +25,13 @@
         </li>
       </ul>
     </div>
-    <div class="navbar-collapse collapse navbar-responsive-collapse link-header">
+    <div class="navbar-collapse collapse navbar-responsive-collapse link-menu">
 
 <?php
 $header_navi = wp_nav_menu(
     array(
         'container'  => '',
-        'menu'       => 'グローバルヘッダー',
+        'theme_location' => 'global_header',
         'menu_class' => 'nav nav-pills navbar-left nav-cats',
         'items_wrap' => '<ul class="%2$s">%3$s</ul>',
         'echo'       => false

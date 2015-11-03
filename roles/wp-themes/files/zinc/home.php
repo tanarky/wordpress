@@ -36,16 +36,13 @@
           <hr />
           <div class="row">
             <div class="col-sm-4 mgb">
-              <h3>カテゴリ</h3>
-              <ul><li><a href="/categories/1">家電</a><ul><li><a href="/categories/5">TV</a><ul><li><a href="/categories/7">Sony</a></li><li><a href="/categories/8">Panasonic</a></li></ul></li><li><a href="/categories/6">冷蔵庫</a></li></ul></li><li><a href="/categories/2">ファッション</a><ul><li><a href="/categories/3">女性</a></li><li><a href="/categories/4">男性</a></li></ul></li></ul>
+              <?php include('modules/footer_tags.php'); ?>
             </div>
             <div class="col-sm-4 mgb">
               <?php include('modules/latest_articles.php'); ?>
             </div>
             <div class="col-sm-4 mgb">
-              <h3>ソーシャル</h3>
-              <a class="twitter-timeline" data-widget-id="649040846575112192" href="https://twitter.com/GREE_news_jp">@GREE_news_jpさんのツイート</a>
-              <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+              <?php if(function_exists('dynamic_sidebar') && dynamic_sidebar(2)){} ?>
             </div>
           </div>
           <hr />
@@ -61,9 +58,3 @@
     </nav>
   </body>
 </html>
-
-<?php 
-//get_header();
-//get_template_part('category_tab');
-//get_template_part('itiran');
-//get_footer();

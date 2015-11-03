@@ -8804,46 +8804,46 @@ a:hover {
 }
 
 /* line 40, ../sass/styles.scss */
-nav.navbar-fixed-top .navbar-right {
+nav .navbar-right {
   margin-right: 0;
 }
 /* line 43, ../sass/styles.scss */
-nav.navbar-fixed-top .container > .navbar-header,
-nav.navbar-fixed-top .container > .navbar-collapse {
+nav .container > .navbar-header,
+nav .container > .navbar-collapse {
   margin-left: -10px;
   margin-right: -10px;
 }
 /* line 50, ../sass/styles.scss */
-nav.navbar-fixed-top ul.navbar-nav {
+nav ul.navbar-nav {
   font-size: 92%;
   height: 50px;
 }
 /* line 54, ../sass/styles.scss */
-nav.navbar-fixed-top ul.navbar-nav .navbar-form {
+nav ul.navbar-nav .navbar-form {
   border: none;
   margin: 0 0 0 10px;
   padding: 8px 0px;
 }
 /* line 61, ../sass/styles.scss */
-nav.navbar-fixed-top .link-header {
+nav .link-menu {
   background-color: #486b00;
 }
 /* line 64, ../sass/styles.scss */
-nav.navbar-fixed-top .link-header a {
+nav .link-menu a {
   border-radius: 0;
   color: #fff;
   padding: 6px 10px;
 }
 /* line 70, ../sass/styles.scss */
-nav.navbar-fixed-top .link-header li {
+nav .link-menu li {
   margin-left: 0;
 }
 /* line 72, ../sass/styles.scss */
-nav.navbar-fixed-top .link-header li a:hover {
+nav .link-menu li a:hover {
   background-color: #2e4600;
 }
 /* line 77, ../sass/styles.scss */
-nav.navbar-fixed-top .link-header li.active a, nav.navbar-fixed-top .link-header li.active a:hover {
+nav .link-menu li.active a, nav .link-menu li.active a:hover {
   background-color: #7d4427;
 }
 

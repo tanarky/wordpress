@@ -74,25 +74,14 @@ href='".get_pagenum_link($pages)."'>Last &raquo;</a>";
      }
 }
 
-//ヘッダーを綺麗に
-remove_action( 'wp_head', 'feed_links_extra', 3 );
-remove_action( 'wp_head', 'feed_links', 2 );
-remove_action( 'wp_head', 'rsd_link' );
-remove_action( 'wp_head', 'wlwmanifest_link' );
-remove_action( 'wp_head', 'index_rel_link' );
-remove_action( 'wp_head', 'parent_post_rel_link', 10, 0 );
-remove_action( 'wp_head', 'start_post_rel_link', 10, 0 );
-remove_action( 'wp_head', 'adjacent_posts_rel_link_wp_head', 10, 0 );
-remove_action( 'wp_head', 'wp_generator' );
-
-//moreリンク
+// moreリンク
 function custom_content_more_link( $output ) {
     $output = preg_replace('/#more-[\d]+/i', '', $output );
     return $output;
 }
 add_filter( 'the_content_more_link', 'custom_content_more_link' );
 
-//セルフピンバック禁止
+// セルフピンバック禁止
 function no_self_pingst( &$links ) {
     $home = home_url();
     foreach ( $links as $l => $link )
@@ -101,7 +90,7 @@ function no_self_pingst( &$links ) {
 }
 add_action( 'pre_ping', 'no_self_pingst' );
 
-//iframeのレスポンシブ対応
+// iframeのレスポンシブ対応
 function wrap_iframe_in_div($the_content) {
     $the_content = preg_replace('/< *?iframe/i', '<div class="embed-responsive embed-responsive-16by9"><iframe', $the_content);
     $the_content = preg_replace('/<\/ *?iframe *?>/i', '</iframe></div>', $the_content);
@@ -109,8 +98,7 @@ function wrap_iframe_in_div($the_content) {
 }
 add_filter('the_content','wrap_iframe_in_div');
 
-
-// サイドバーウィジェット
+// ウィジェット
 if(!function_exists('dynamic_sidebar') || !dynamic_sidebar(1)){
     register_sidebars(1,
                       array(
@@ -121,9 +109,21 @@ if(!function_exists('dynamic_sidebar') || !dynamic_sidebar(1)){
                           'after_title'   => '',
                       ));
 }
+if(!function_exists('dynamic_sidebar') || !dynamic_sidebar(2)){
+    register_sidebars(1,
+                      array(
+                          'name'=>'フッター',
+                          'before_widget' => '',
+                          'after_widget'  => '',
+                          'before_title'  => '',
+                          'after_title'   => '',
+                      ));
+}
 
 // カスタムメニュー
-register_nav_menu('global_header', 'グローバルヘッダー');
+register_nav_menus(
+    array('global_header'=> 'グローバルヘッダー',
+          'footer_tags',   'フッタータグ'));
 
 function wp_theme_customize_register($wp_customize) {
     $wp_customize->add_section(THEME_NAME. '_logo', array(

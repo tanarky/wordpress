@@ -1,41 +1,62 @@
-<?php get_header(); ?>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="IE=Edge,chrome=1" http-equiv="X-UA-Compatible" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title><?php echo bloginfo('name');?></title>
 
-<div id="content" class="clearfix">
-  <div id="contentInner">
-    <main>
-      <article>
-        <div class="post"> 
-          <!--ぱんくず -->
-          <div id="breadcrumb">
-            <div itemscope itemtype="http://data-vocabulary.org/Breadcrumb"> <a href="<?php echo home_url(); ?>" itemprop="url"> <span itemprop="title">ホーム</span> </a> &gt; </div>
-            <?php $postcat = get_the_category(); ?>
-            <?php $catid = $postcat[0]->cat_ID; ?>
-            <?php $allcats = array($catid); ?>
-            <?php 
-while(!$catid==0) {
-    $mycat = get_category($catid);
-    $catid = $mycat->parent;
-    array_push($allcats, $catid);
-}
-array_pop($allcats);
-$allcats = array_reverse($allcats);
-?>
-            <?php foreach($allcats as $catid): ?>
-            <div itemscope itemtype="http://data-vocabulary.org/Breadcrumb"> <a href="<?php echo get_category_link($catid); ?>" itemprop="url"> <span itemprop="title"><?php echo get_cat_name($catid); ?></span> </a> &gt; </div>
-            <?php endforeach; ?>
-          </div>
-          <!--/ ぱんくず -->
-
-            <h1 class="entry-title"> Hello! my name is 404 </h1>
-            <p>お探しのページはありませんでした！申し訳ありません。</p>
-
+    <link rel="stylesheet" href="<?php echo get_stylesheet_uri(); ?>" type="text/css" media="screen">
+    <style type="text/css"><?php include('modules/custom_style.php');?></style>
+    <script src="<?php echo get_template_directory_uri(); ?>/js/jquery-1.11.3.min.js"></script>
+    <script src="<?php echo get_template_directory_uri(); ?>/js/bootstrap.min.js"></script>
+    <!--[if lt IE 9]>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.1/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <?php include('modules/global_header.php'); ?>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 main-column">
+          <h1 class="entry-title">Page not found</h1>
+          <p>お探しのページはありません。</p>
+          <hr>
+          <?php include('modules/latest_articles.php'); ?>
         </div>
-        <!--/post--> 
-      </article>
-    </main>
-  </div>
-  <!-- /#contentInner -->
-  <?php get_sidebar(); ?>
-</div>
-<!--/#content -->
-<?php get_footer(); ?>
+        <div class="col-md-4 sub-column">
+          <div class="ad mgb">
+            <?php if(function_exists('dynamic_sidebar') && dynamic_sidebar(1)){} ?>
+          </div>
+        </div>
+      </div>
+    </div>
+    <nav class="navbar navbar-default navbar-static-bottom">
+      <div class="container">
+        <footer>
+          <hr />
+          <div class="row">
+            <div class="col-sm-4 mgb">
+              <?php include('modules/footer_tags.php'); ?>
+            </div>
+            <div class="col-sm-4 mgb">
+              <?php include('modules/latest_articles.php'); ?>
+            </div>
+            <div class="col-sm-4 mgb">
+              <?php if(function_exists('dynamic_sidebar') && dynamic_sidebar(2)){} ?>
+            </div>
+          </div>
+          <hr />
+          <div class="row">
+            <div class="col-sm-12">
+              <p>
+                &copy; Company 2015
+              </p>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </nav>
+  </body>
+</html>
+
